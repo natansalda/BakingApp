@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BakingApp</string>
+    <string name="erro_message">Ups, there was some error loading the recipes!</string>
+    <string name="share_this_recipe">Share this recipe</string>
+    <string name="shopping_list">Shopping list</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="steps">Steps:</string>
+    <string name="step_format">Step: %1$d</string>
+</resources>
