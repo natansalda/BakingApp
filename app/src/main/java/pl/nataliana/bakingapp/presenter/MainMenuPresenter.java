@@ -66,7 +66,7 @@ public class MainMenuPresenter implements MainMenuPresenterViewContract.Presente
             public void onError(Throwable e) {
                 Log.d(TAG, "networkApiRecipeObserver.onError");
                 if(mView.isActive()) {
-                    mView.displayErrorMessage(R.string.erro_message);
+                    mView.displayErrorMessage(R.string.error_message);
                 }
             }
 

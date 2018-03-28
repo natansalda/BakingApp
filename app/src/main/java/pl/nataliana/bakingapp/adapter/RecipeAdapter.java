@@ -25,9 +25,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
     private ArrayList<Recipe> mRecipeList;
     private OnItemClickListener mRecipeOnItemClickListener;
 
-    public RecipeAdapter(ArrayList<Recipe> incomingRecipeSet,
-                         OnItemClickListener<Recipe> recipeOnItemClickListener) {
-        this.mRecipeList = incomingRecipeSet;
+    public RecipeAdapter(ArrayList<Recipe> parsedRecipes, OnItemClickListener<Recipe> recipeOnItemClickListener) {
+        this.mRecipeList = parsedRecipes;
         this.mRecipeOnItemClickListener = recipeOnItemClickListener;
     }
 
@@ -47,9 +46,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
                 .error(R.drawable.plate)
                 .dontAnimate()
                 .into(holder.mBinding.ivRecipeImage);
-        holder.mBinding.tvRecipeName.setText(holder.mRecipe.getName());
-        holder.mBinding.tvRecipeName.setSelected(true);
-        holder.mBinding.tvRecipeName.setHorizontallyScrolling(true);
+        holder.mBinding.tvRecipeTitle.setText(holder.mRecipe.getName());
+        holder.mBinding.tvRecipeTitle.setSelected(true);
+        holder.mBinding.tvRecipeTitle.setHorizontallyScrolling(true);
         holder.mBinding.tvIngredientCount.setText(String.valueOf(holder.mRecipe.getIngredients().size()));
         holder.mBinding.tvServingCount.setText(String.valueOf(holder.mRecipe.getServings()));
         holder.mBinding.tvStepCount.setText(String.valueOf(holder.mRecipe.getSteps().size()));
