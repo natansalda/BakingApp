@@ -18,8 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".RecipeStepActivity"></activity>
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName="pl.nataliana.bakingapp.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pl.nataliana.bakingapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RecipeStepActivity"
+            android:parentActivityName="pl.nataliana.bakingapp.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pl.nataliana.bakingapp.MainActivity" />
+        </activity>
 
         <receiver android:name=".widget.WidgetProvider">
             <intent-filter>
