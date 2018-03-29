@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_twopane);
+        setContentView(R.layout.activity_masterdetail);
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
