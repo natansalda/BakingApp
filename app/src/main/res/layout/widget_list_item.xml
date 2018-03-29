@@ -3,5 +3,5 @@
     android:id="@+id/tv_recipe_widget_ingredient_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:textSize="12sp">
+    android:textSize="20sp">
 </TextView>

@@ -7,7 +7,7 @@
         android:id="@+id/cv_recipe_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="#d2ff28"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
@@ -20,8 +20,9 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_recipe_image"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_margin="4dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FF000000"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -33,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 tools:text="Recipe Name"
                 android:singleLine="true"
                 android:ellipsize="marquee"
@@ -42,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/iv_recipe_image"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="8dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_recipe_icons"
@@ -51,12 +52,12 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/iv_recipe_image"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="8dp">
 
                 <ImageView
                     android:id="@+id/iv_ingredients_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="4dp"
                     android:src="@drawable/ingredients"/>
 
@@ -66,13 +67,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     tools:text="XX"/>
 
                 <ImageView
                     android:id="@+id/iv_steps_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="4dp"
                     android:src="@drawable/steps"/>
 
@@ -82,13 +83,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     tools:text="XX"/>
 
                 <ImageView
                     android:id="@+id/iv_serving_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="4dp"
                     android:src="@drawable/dish"/>
 
@@ -97,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     tools:text="XX"/>
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
