@@ -30,7 +30,6 @@ public class MainActivityTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    //Clicks on a RecyclerView Recipe item and checks if new activity's toolbar matches recipe
     @Test
     public void clickRecyclerViewItem_OpensDetailActivity() {
 
@@ -40,14 +39,15 @@ public class MainActivityTest {
             e.printStackTrace();
         }
 
+        // Find the view
         onView(withId(R.id.recipe_recycler_view))
-                .perform(RecyclerViewActions.actionOnItem(
-                        hasDescendant(withText(RECIPE_NAME)), click()));
+                // Click the view
+                .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(RECIPE_NAME)), click()));
 
         matchToolbarTitle(RECIPE_NAME);
     }
 
-
+    // Check if the action is performed properly
     private static ViewInteraction matchToolbarTitle(CharSequence title) {
         return onView(isAssignableFrom(Toolbar.class))
                 .check(matches(withToolbarTitle(is(title))));
