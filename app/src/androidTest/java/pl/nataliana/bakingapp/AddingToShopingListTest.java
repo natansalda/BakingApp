@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
@@ -23,6 +25,8 @@ public class AddingToShopingListTest {
 
     @Test
     public void checkIngredientButton_MarkItAsChecked() {
-        onView(withId(R.id.ll_ingredient_checklist)).perform(click());
+        onView(withId(R.id.ll_ingredient_checklist))
+                .perform(click())
+                .check(matches(isClickable()));
     }
 }

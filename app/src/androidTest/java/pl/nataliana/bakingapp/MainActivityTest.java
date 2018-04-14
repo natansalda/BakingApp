@@ -39,15 +39,12 @@ public class MainActivityTest {
             e.printStackTrace();
         }
 
-        // Find the view
         onView(withId(R.id.recipe_recycler_view))
-                // Click the view
                 .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(RECIPE_NAME)), click()));
 
         matchToolbarTitle(RECIPE_NAME);
     }
 
-    // Check if the action is performed properly
     private static ViewInteraction matchToolbarTitle(CharSequence title) {
         return onView(isAssignableFrom(Toolbar.class))
                 .check(matches(withToolbarTitle(is(title))));
