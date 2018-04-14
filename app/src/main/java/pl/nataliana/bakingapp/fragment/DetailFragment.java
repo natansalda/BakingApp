@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -103,6 +104,7 @@ public class DetailFragment extends Fragment implements DetailPresenterViewContr
         setHasOptionsMenu(true);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recipe_detail, container, false);
         final View view = binding.getRoot();
+
         binding.tbToolbar.toolbar.setTitle(mRecipe.getName());
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.tbToolbar.toolbar);
 
