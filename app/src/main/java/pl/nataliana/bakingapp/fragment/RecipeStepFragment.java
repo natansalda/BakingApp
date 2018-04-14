@@ -110,6 +110,25 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        releasePlayer();
+        if (mMediaSession != null) {
+            mMediaSession.setActive(false);
+        }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        releasePlayer();
+        if (mMediaSession != null) {
+            mMediaSession.setActive(false);
+        }
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (this.isVisible()) {
@@ -162,6 +181,8 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
                     getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
             mExoPlayer.prepare(mediaSource);
             mExoPlayer.setPlayWhenReady(true);
+        } else {
+
         }
     }
 
@@ -213,7 +234,7 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
 
         @Override
         public void onPause() {
-            mExoPlayer.setPlayWhenReady(false);
+            mExoPlayer.setPlayWhenReady(true);
         }
 
         @Override
