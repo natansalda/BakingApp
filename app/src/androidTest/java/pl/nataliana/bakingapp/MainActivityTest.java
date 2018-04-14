@@ -25,7 +25,7 @@ import static org.hamcrest.core.Is.is;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
-    public static final String RECIPE_NAME = "Cheese Cake";
+    public static final String RECIPE_NAME = "Brownies";
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
