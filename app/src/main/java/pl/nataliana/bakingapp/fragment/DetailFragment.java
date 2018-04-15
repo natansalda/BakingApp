@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
+import pl.nataliana.bakingapp.DetailActivity;
 import pl.nataliana.bakingapp.databinding.FragmentRecipeDetailBinding;
 
 import pl.nataliana.bakingapp.R;
@@ -67,6 +69,7 @@ public class DetailFragment extends Fragment implements DetailPresenterViewContr
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
+
         if ((arguments != null) && (arguments.containsKey(BUNDLE_DATA))) {
             mRecipe = arguments.getParcelable(BUNDLE_DATA);
         }

@@ -7,4 +7,6 @@
         android:icon="@android:drawable/ic_menu_share"
         android:title="@string/share_this_recipe"
         app:showAsAction="always" />
+
+
 </menu>
