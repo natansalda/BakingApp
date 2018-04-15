@@ -40,6 +40,11 @@ import pl.nataliana.bakingapp.model.RecipeStep;
 
 public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListener {
 
+    private long playbackPosition;
+    private boolean playbackReady = true;
+    private int currentWindow;
+    private static final String PLAYER_POSITION = "playback_position";
+    private static final String PLAYBACK_READY = "playback_ready";
     private final String TAG = RecipeStepFragment.class.getSimpleName();
     private static final String BUNDLE_STEP_DATA = "pl.nataliana.bakingapp.step_data";
     private FragmentRecipeStepBinding binding;
@@ -60,6 +65,11 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
+        if (savedInstanceState != null){
+            playbackPosition = savedInstanceState.getLong(PLAYER_POSITION);
+            playbackReady = savedInstanceState.getBoolean(PLAYBACK_READY);
+    }
+
         if ((arguments != null) && (arguments.containsKey(BUNDLE_STEP_DATA))) {
             mRecipeStep = arguments.getParcelable(BUNDLE_STEP_DATA);
         }
@@ -122,6 +132,7 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     @Override
     public void onPause() {
         super.onPause();
+        mExoPlayer.setPlayWhenReady(playbackReady);
         releasePlayer();
         if (mMediaSession != null) {
             mMediaSession.setActive(false);
@@ -180,9 +191,8 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                     getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
             mExoPlayer.prepare(mediaSource);
-            mExoPlayer.setPlayWhenReady(true);
-        } else {
-
+            mExoPlayer.setPlayWhenReady(playbackReady);
+            mExoPlayer.seekTo(currentWindow, playbackPosition);
         }
     }
 
@@ -224,6 +234,18 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
 
     @Override
     public void onPositionDiscontinuity() {
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(mExoPlayer != null){
+            playbackPosition = mExoPlayer.getCurrentPosition();
+            playbackReady = mExoPlayer.getPlayWhenReady();
+            currentWindow = mExoPlayer.getCurrentWindowIndex();
+        }
+        outState.putLong(PLAYER_POSITION, playbackPosition);
+        outState.putBoolean(PLAYBACK_READY, playbackReady);
     }
 
     private class MySessionCallback extends MediaSessionCompat.Callback {
