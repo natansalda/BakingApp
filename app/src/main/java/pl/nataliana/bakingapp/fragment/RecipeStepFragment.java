@@ -122,10 +122,9 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     @Override
     public void onStop() {
         super.onStop();
-        releasePlayer();
         if (mMediaSession != null) {
             mMediaSession.setActive(false);
-        }
+        } else releasePlayer();
     }
 
 
@@ -133,10 +132,9 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     public void onPause() {
         super.onPause();
         mExoPlayer.setPlayWhenReady(playbackReady);
-        releasePlayer();
         if (mMediaSession != null) {
             mMediaSession.setActive(false);
-        }
+        }   else releasePlayer();
     }
 
     @Override

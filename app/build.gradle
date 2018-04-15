@@ -38,8 +38,8 @@ android {
         androidTestImplementation 'com.android.support.test.espresso:espresso-accessibility:3.0.1'
         androidTestImplementation 'com.android.support.test.espresso:espresso-web:3.0.1'
         androidTestImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.1'
-
         androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
+
         implementation 'com.android.support:support-core-utils:27.1.1'
         implementation 'com.android.support:support-compat:27.1.1'
         implementation 'com.android.support.constraint:constraint-layout:1.1.0'
