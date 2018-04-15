@@ -37,8 +37,6 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_masterdetail);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
@@ -56,16 +54,6 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
                         .commit();
             }
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

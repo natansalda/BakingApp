@@ -110,6 +110,7 @@ public class DetailFragment extends Fragment implements DetailPresenterViewContr
 
         binding.tbToolbar.toolbar.setTitle(mRecipe.getName());
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.tbToolbar.toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (mIngredientList.size() > 0) {
             for (CheckBox cbIngredientView : mIngredientList) {
@@ -155,6 +156,16 @@ public class DetailFragment extends Fragment implements DetailPresenterViewContr
         MenuItem item = menu.findItem(R.id.menu_item_detail);
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         setShareIntent(createShareIntent());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setShareIntent(Intent shareIntent) {
