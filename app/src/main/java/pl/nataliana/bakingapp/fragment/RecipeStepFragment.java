@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.nataliana.bakingapp.databinding.FragmentRecipeStepBinding;
-
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -32,6 +30,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import pl.nataliana.bakingapp.R;
+import pl.nataliana.bakingapp.databinding.FragmentRecipeStepBinding;
 import pl.nataliana.bakingapp.model.RecipeStep;
 
 /**
@@ -65,10 +64,10 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             playbackPosition = savedInstanceState.getLong(PLAYER_POSITION);
             playbackReady = savedInstanceState.getBoolean(PLAYBACK_READY);
-    }
+        }
 
         if ((arguments != null) && (arguments.containsKey(BUNDLE_STEP_DATA))) {
             mRecipeStep = arguments.getParcelable(BUNDLE_STEP_DATA);
@@ -110,31 +109,27 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
         return view;
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         releasePlayer();
-        if (mMediaSession != null) {
-            mMediaSession.setActive(false);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mMediaSession != null) {
-            mMediaSession.setActive(false);
-        } else releasePlayer();
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mExoPlayer.setPlayWhenReady(playbackReady);
-        if (mMediaSession != null) {
-            mMediaSession.setActive(false);
-        }   else releasePlayer();
+        if (Util.SDK_INT > 23) {
+            releasePlayer();
+        }
     }
 
     @Override
@@ -196,7 +191,9 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
 
     private void releasePlayer() {
         if (mExoPlayer != null) {
-            mExoPlayer.stop();
+            playbackPosition = mExoPlayer.getCurrentPosition();
+            currentWindow = mExoPlayer.getCurrentWindowIndex();
+            playbackReady = mExoPlayer.getPlayWhenReady();
             mExoPlayer.release();
             mExoPlayer = null;
         }
@@ -237,7 +234,7 @@ public class RecipeStepFragment extends Fragment implements ExoPlayer.EventListe
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(mExoPlayer != null){
+        if (mExoPlayer != null) {
             playbackPosition = mExoPlayer.getCurrentPosition();
             playbackReady = mExoPlayer.getPlayWhenReady();
             currentWindow = mExoPlayer.getCurrentWindowIndex();
